@@ -43,9 +43,6 @@ function renderQuiz() {
 // Array to store selected answer values
 let selectedAnswers = [];
 
-// Array to store selected answer values
-let selectedAnswers = [];
-
 // Function to handle option selection
 function handleOptionSelection(event) {
     const selectedQuestion = event.target.getAttribute('data-question');
