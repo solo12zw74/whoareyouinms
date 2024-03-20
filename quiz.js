@@ -45,11 +45,11 @@ let selectedAnswers = [];
 
 // Function to handle option selection
 function handleOptionSelection(event) {
-   const selectedQuestion = event.target.getAttribute('data-question');
+    const selectedQuestion = event.target.getAttribute('data-question');
     const selectedOption = event.target.getAttribute('data-option');
 
-    // Remove 'btn-success' class from all buttons
-    const buttons = document.querySelectorAll('.btn-success');
+    // Remove 'btn-success' class from all buttons of the same question
+    const buttons = document.querySelectorAll(`[data-question="${selectedQuestion}"]`);
     buttons.forEach(button => button.classList.remove('btn-success'));
 
     // Add 'btn-success' class to the clicked button
@@ -57,6 +57,8 @@ function handleOptionSelection(event) {
 
     // Store the selected answer value in the array
     selectedAnswers[selectedQuestion] = parseInt(selectedOption) + 1;
+
+    console.log(`Question ${parseInt(selectedQuestion) + 1}, Option ${parseInt(selectedOption) + 1} selected.`);
 }
 
 // Function to handle submit button click
