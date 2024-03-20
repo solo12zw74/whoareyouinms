@@ -50,10 +50,10 @@ function handleOptionSelection(event) {
 
     // Remove 'btn-success' class from all buttons of the same question
     const buttons = document.querySelectorAll(`[data-question="${selectedQuestion}"]`);
-    buttons.forEach(button => button.classList.remove('btn-success'));
+    buttons.forEach(button => button.classList.remove('btn-secondary'));
 
     // Add 'btn-success' class to the clicked button
-    event.target.classList.add('btn-success');
+    event.target.classList.add('btn-secondary');
 
     // Store the selected answer value in the array
     selectedAnswers[selectedQuestion] = parseInt(selectedOption) + 1;
@@ -95,7 +95,7 @@ function renderQuiz() {
         ques.options.forEach((opt, optIndex) => {
             const optionBtn = document.createElement('button');
             optionBtn.textContent = opt;
-            optionBtn.classList.add('btn', 'btn-light', 'me-2');
+            optionBtn.classList.add('btn', 'me-2');
             optionBtn.setAttribute('data-question', index);
             optionBtn.setAttribute('data-option', optIndex);
             optionBtn.addEventListener('click', handleOptionSelection);
