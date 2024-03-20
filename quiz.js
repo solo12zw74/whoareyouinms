@@ -83,6 +83,29 @@ function handleSubmit() {
     resultContainer.innerHTML = `Total Score: ${totalScore}, Role: ${role}`;
 }
 
+// Function to render questions and options
+function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+
+    questions.forEach((ques, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question', 'mt-4');
+        questionDiv.innerHTML = `<p>${ques.question}</p>`;
+
+        ques.options.forEach((opt, optIndex) => {
+            const optionBtn = document.createElement('button');
+            optionBtn.textContent = opt;
+            optionBtn.classList.add('btn', 'btn-light', 'me-2');
+            optionBtn.setAttribute('data-question', index);
+            optionBtn.setAttribute('data-option', optIndex);
+            optionBtn.addEventListener('click', handleOptionSelection);
+            questionDiv.appendChild(optionBtn);
+        });
+
+        quizContainer.appendChild(questionDiv);
+    });
+}
+
 // Render the quiz when the page loads
 window.onload = function() {
     renderQuiz();
