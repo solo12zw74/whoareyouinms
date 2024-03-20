@@ -40,6 +40,12 @@ function renderQuiz() {
     });
 }
 
+// Array to store selected answer values
+let selectedAnswers = [];
+
+// Array to store selected answer values
+let selectedAnswers = [];
+
 // Function to handle option selection
 function handleOptionSelection(event) {
     const selectedQuestion = event.target.getAttribute('data-question');
@@ -52,10 +58,39 @@ function handleOptionSelection(event) {
     // Add 'selected' class to the clicked button
     event.target.classList.add('selected');
 
+    // Store the selected answer value in the array
+    selectedAnswers[selectedQuestion] = parseInt(selectedOption) + 1;
+
     console.log(`Question ${parseInt(selectedQuestion) + 1}, Option ${parseInt(selectedOption) + 1} selected.`);
+}
+
+// Function to handle submit button click
+function handleSubmit() {
+    // Calculate the result based on selected answer values
+    let totalScore = selectedAnswers.reduce((acc, val) => acc + val, 0);
+    
+    // Map total score to roles
+    let role = '';
+    if (totalScore >= 30 && totalScore <= 35) {
+        role = 'Manager';
+    } else if (totalScore >= 20 && totalScore <= 25) {
+        role = 'Team Leader';
+    } else if (totalScore >= 10 && totalScore <= 15) {
+        role = 'Developer';
+    } else {
+        role = 'Intern';
+    }
+    
+    // Output the result
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = `Total Score: ${totalScore}, Role: ${role}`;
 }
 
 // Render the quiz when the page loads
 window.onload = function() {
     renderQuiz();
+
+    // Add event listener to the submit button
+    const submitButton = document.getElementById('submit-btn');
+    submitButton.addEventListener('click', handleSubmit);
 };
