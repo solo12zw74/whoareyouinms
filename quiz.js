@@ -45,7 +45,12 @@ function handleOptionSelection(event) {
     const selectedQuestion = event.target.getAttribute('data-question');
     const selectedOption = event.target.getAttribute('data-option');
 
-    // Logic to process the selected option
+    // Remove 'selected' class from all buttons of the same question
+    const buttons = document.querySelectorAll(`[data-question="${selectedQuestion}"]`);
+    buttons.forEach(button => button.classList.remove('selected'));
+
+    // Add 'selected' class to the clicked button
+    event.target.classList.add('selected');
 
     console.log(`Question ${parseInt(selectedQuestion) + 1}, Option ${parseInt(selectedOption) + 1} selected.`);
 }
